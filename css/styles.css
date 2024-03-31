@@ -1,0 +1,702 @@
+/* Bacsics*/
+html{
+  font-size: 10px;
+}
+
+body{
+  font-size: 1.6rem;
+  height: 100vh;
+  margin: 0;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+/*variables*/
+______VARIABLES___{ /* az oldalon használt változók*/
+  z-index: inherit;
+}
+
+:root{
+  --color-neutral-100: hsl(0, 0%, 100%);
+  --color-neutral-200: hsl(223, 64%, 98%);
+  --color-neutral-300: hsl(252, 12%, 92%);
+  --color-neutral-400: hsl(220, 14%, 75%);
+  --color-neutral-700: hsl(219, 9%, 45%);
+  --color-neutral-900: hsl(220, 13%, 13%);
+
+  --color-primary-900: hsl(228, 9%, 11%);
+
+  --color-primary-400: hsl(25, 100%, 94%);
+  --color-primary-700: hsl(26, 100%, 55%);
+  }
+
+  /* basic general styles*/
+
+a{
+  color: var(--color-neutral-700);
+  text-decoration: none;
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+}
+
+li{
+  list-style: none;
+}
+
+p,
+h1,
+h2,
+h3{
+  padding: 0;
+  margin: 0;
+}
+
+.categories{
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper{
+  width: 100%;
+  /* max-width: 111.5rem; */
+  max-width: 117.5rem;
+  padding: 0 3rem;
+  margin: auto;
+  font-size: 1.6rem;
+}
+
+.page-cover{
+  position: fixed;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0,0,0,.7);
+  transition: all ease .4s;
+}
+
+.page-cover.active{
+  visibility: visible;
+  opacity: 1;
+}
+
+______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó képe*/
+  z-index: inherit;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  height: 11rem;
+  border-bottom: 1px solid var(--color-neutral-300);
+}
+
+.header--hamburger{
+  display: none;
+  height: 17px;
+  width: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+
+
+
+.header--hamburger > span
+{
+
+  width: 14px;
+  height: 3px;
+  background-color: var(--color-neutral-700);
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.header--hamburger:hover span:nth-child(2){
+  background-color: transparent;
+}
+
+.header--hamburger:hover span:nth-child(1) {
+  transform: rotate(45deg) translateY(5px) translateX(6px);
+  transform-origin: center;
+}
+
+.header--hamburger:hover span:nth-child(3){
+  transform: rotate(-45deg) translateY(-6px) translateX(7px);
+}
+
+/* Categories*/
+.categories{
+  display: flex;
+  align-items: center;
+  margin-left: 5.9rem;
+}
+
+.categories--closer{
+  display: none;
+}
+
+.categories--nav{
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.categories--item{
+  position: relative;
+}
+
+.categories--item::before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  display: block;
+  height: 0.4rem;
+  background-color: var(--color-primary-700);
+  bottom: -4.6rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease-in-out .4s;
+}
+
+.categories--item:hover::before,
+.categories--item:focus::before{
+  visibility: visible;
+  opacity: 1;
+}
+
+.categories--icons{
+  margin-left: auto;
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  height: 5rem;
+}
+
+.categories--icons img{
+  width: auto;
+  height: 100%;
+}
+
+/* header mobile view*/
+/* Media query*/
+ @media screen and (max-width: 899px){
+
+
+
+   /*---Header*/
+  .header{
+    margin: 0 2.5rem;
+    height: calc(110px - (((750px - 100vw) / 375) * 40));
+  }
+
+  .header--hamburger{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    margin-right: 15px;
+    position: relative;
+  }
+
+  /* the nav element*/
+.categories{
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  left: -100%;
+  margin: 0;
+  padding: 9.6rem 0 0 2.5rem;
+  background-color: var(--color-neutral-100);
+  transition: all cubic-bezier(.62,.01,.25,1) .4s;
+}
+
+.categories.visible{
+  left: 0;
+}
+
+/*categories--closer*/
+.categories--closer{
+  display: block;
+  position: absolute;
+  top: 2.2rem;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+  .categories--closer::before,
+  .categories--closer::after
+  {
+    content: '';
+    width: 15px;
+    height: 3px;
+    background-color: var(--color-neutral-900);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    margin: auto;
+  }
+
+  .categories--closer::before {
+    transform: rotate(45deg);
+  }
+  .categories--closer::after {
+    transform: rotate(-45deg);
+  }
+
+  /*navigation*/
+  .categories--nav
+  {
+    flex-direction: column;
+    z-index: 2;
+    gap: 2.3rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    width: 66vw;
+    height: 100vh;
+  }
+
+  .categories--item > a{
+    color: var(--color-primary-900);
+  }
+
+
+/* li items*/
+  .categories--item:hover::before,
+  .categories--item:focus::before
+  {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+  }
+
+  .categories--item a
+  {
+    transition: color ease-in-out .2s;
+  }
+
+  .categories--item a:hover
+  {
+    color: var(--color-neutral-400);
+  }
+
+  .categories--icons
+  {
+    height: auto;
+    gap: calc(46px - (((750px - 100vw) / 375) * 26));
+  }
+
+  .categories--icons > img
+  {
+    height: calc(50px - (((750px - 100vw) / 375) * 25));
+  }
+}
+
+
+_______KEPGALERIA JOBBRA LEIRAS ES GOMB {
+  z-index: 0;
+}
+
+/* kétoszlopos kinézet */
+main{
+  margin-top: 9.4rem;
+  margin-bottom: 10rem;
+  padding: 0 4.9rem;
+  display: grid;
+  grid-template-columns: 445px 1fr;
+  column-gap: 12.7rem;
+}
+
+@media screen and (min-width: 900px) and (max-width: 1440px) {
+  main {
+    column-gap: calc(70px + ((100vw - 900px) / 240) * 57);
+  }
+}
+/* egyoszloposra vált 899px-alatt*/
+@media screen and ( max-width: 899px ){
+  main{
+    grid-template-columns: 1fr;
+  }
+}
+
+______HERO KEP PLUSZ IKONOK___{/* BALOLDALI RÉSZ */
+  z-index: inherit;
+}
+
+.product--gallery{
+display: grid;
+align-content: start;
+row-gap: 3.2rem;
+}
+
+.gallery--hero{
+  position: relative;
+}
+
+.arrow{
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 50px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3;
+  display: none;
+}
+
+.right-arrow{
+  right: 0;
+  margin-right: 15px;;
+}
+.left-arrow{
+  left: 0;
+  margin-left: 15px;
+}
+
+.gallery--hero > img {
+  width: 100%;
+  max-width: 445px;
+  display: block;
+  border-radius: 15px;
+  transition: opacity ease-in .4s;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.gallery--hero > img.active {
+  opacity: 0.1;
+}
+
+.gallery--icons {
+  display: grid;
+  column-gap: 3rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gallery--icons > img{
+  cursor: pointer;
+}
+
+.gallery--icons > img.selected{
+  border: 2px inset var(--color-primary-700);
+  opacity: 0.4;
+}
+
+@media screen and ( max-width: 899px ){
+
+  main{
+    padding: 0 2rem;
+  }
+  .product--gallery{
+    grid-template-columns: 445px 1fr;
+    column-gap: 30px;
+  }
+
+  .gallery--icons{
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-flow: unset;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .product--name{
+    margin-top: 0;
+  }
+}
+
+
+.gallery--icons > img{
+  width: 100%;
+  border-radius: 15px;
+}
+
+@media screen and ( max-width: 760px ){
+
+  .gallery--icons{
+    grid-template-columns: auto;
+    grid-template-rows: repeat(4, 1fr);
+    align-content: stretch;
+    justify-content:  start;
+    align-items: start;
+    justify-items: start;
+    height: 445px;
+  }
+
+  .gallery--icons > img{
+    height: 100%;
+    width: auto;
+  }
+}
+
+
+@media screen and (max-width: 680px){
+
+  main {
+    margin-top: calc(max(0px, 0px + ((100vw - 375px) / 405) * 94));
+  }
+
+  .product--gallery{
+    grid-template-columns: 1fr;
+  }
+
+  .gallery--hero > img{
+    max-width: 100%;
+  }
+
+  .gallery--icons{
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 3rem;
+    height: auto;
+  }
+
+  .gallery--icons > img{
+    height: auto;
+    width: 100%;
+  }
+}
+
+
+
+______TERMEK LEIRAS PLUSZ KOSAR___{/* a hero képtől jobbra eső oszlop*/
+  z-index: inherit;
+}
+
+.product--details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product--name{
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: var(--color-primary-700);
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  word-spacing: 0.2rem;
+  margin-top: -23px;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 899px){
+
+  .product--details{
+    margin-top: 7rem;
+    margin-bottom: 10rem
+  }
+
+  .product--name{
+    margin-top: 0;
+  }
+}
+
+h1{
+  font-size: 4.4rem;
+  color: var(--color-neutral-900);
+  line-height: 1.1;
+  margin-bottom: 3.7rem;
+}
+
+p{
+  color: var(--color-neutral-700);
+  line-height: 1.6;
+}
+
+.product--pricing{
+  justify-items: start;
+  grid-template-columns: auto 1fr;
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+  margin-top: 2.4rem;
+  margin-bottom: 40px;
+}
+
+
+.price--discounted{
+  font-size: 2.9rem;
+  color: var(--color-neutral-900);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.price--discount{
+  display: grid;
+  align-content: center;
+  place-items: center;
+  font-size: 1.5rem;
+  padding: 0 12px;
+  color: var(--color-primary-700);
+  font-weight: 900;
+  background-color: var(--color-primary-400);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.price--original{
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--color-neutral-400);
+  text-decoration: line-through;
+
+}
+
+
+/* .product--cart*/
+
+.product--cart{
+  display: flex;
+  height: 57px;
+}
+
+.minus,
+.number,
+.plus,
+.cart{
+  display: flex;
+  flex-basis: 52px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: var(--color-neutral-200);
+  font-weight: bold;
+}
+
+.minus{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  cursor: pointer;
+  padding-left: 15px;
+  justify-content: flex-start
+}
+
+.plus{
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+  justify-content: flex-end;
+  padding-right: 15px;
+}
+
+.cart{
+  flex-basis: 273px;
+  color: var(--color-neutral-100);
+  background-color: var(--color-primary-700);
+  gap: 16px;
+  margin-left: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 1.4rem;
+}
+
+.cart > img{
+  filter: brightness(0) invert(1);
+  height: 15px;
+}
+
+@media screen and (max-width: 580px){
+
+  .wrapper{
+    padding: 0;
+  }
+
+  .header{
+    border: none;
+  }
+
+  main{
+    padding: 0;
+    margin-bottom: 4rem;
+  }
+
+ .product--details{
+  margin-top: max(0px, calc(70px - ((580px - 100vw) / 205) * 46));
+  padding-left: 2.7rem;
+  padding-right: 2.3rem;
+ }
+
+ .product--name{
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+ }
+
+ h1 {
+  font-size: max(0px, calc(44px - ((580px - 100vw) / 205) * 16));
+  margin-bottom: 1.7rem;
+}
+
+
+
+.price--original{
+  margin-left: auto;
+}
+
+.product--pricing{
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.3rem;
+}
+
+.product--cart{
+  flex-wrap: wrap;
+}
+
+.product--cart > *{
+  flex-grow: 1;
+  margin: 0;
+  height: 57px;
+}
+
+.minus{
+  padding-left: 2.3rem;
+}
+
+.plus{
+  padding-right: 25px
+}
+
+.cart{
+  flex-basis: 100%;
+  margin-top: 1.6rem;
+  box-shadow: 0 20px 55px -19px var(--color-primary-700);
+}
+
+
+  .gallery--hero > img{
+    border-radius: 0;
+    object-fit: cover;
+    object-position: center center;
+    max-height: max(0px, calc(580px - ((580px - 100vw) / 205) * 280));
+  }
+
+  .gallery--icons{
+    display: none;
+  }
+
+  .arrow{
+    display: grid;
+    width: 40px;
+    height: 40px;
+  }
+}
+

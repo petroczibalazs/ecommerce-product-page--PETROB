@@ -1,0 +1,81 @@
+.lightBox{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+ z-index: 200;
+}
+
+.lightBox--closer{
+  display: block;
+  position: absolute;
+  top: -52px;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+  .lightBox--closer::before,
+  .lightBox--closer::after
+  {
+    content: '';
+    width: 25px;
+    height: 4px;
+    background-color: var(--color-primary-700);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: auto;
+    margin: auto;
+  }
+
+  .lightBox--closer::before {
+    transform: rotate(45deg);
+  }
+  .lightBox--closer::after {
+    transform: rotate(-45deg);
+  }
+
+
+.lightBox .product--gallery
+{
+  width: 552px;
+  row-gap: 3.9rem;
+  cursor:default;
+  grid-template-columns: 1fr;;
+}
+
+.lightBox .gallery--hero > img
+{
+  width: 100%;
+  max-width: 552px;
+  cursor: default;
+}
+
+.lightBox .arrow{
+  width: 58px;
+  height: 58px;
+  display: grid;
+  transform: translateY(-10px);
+}
+
+.lightBox .left-arrow
+{
+  margin-left: -29px;
+}
+
+.lightBox .right-arrow
+{
+  margin-right: -29px;
+}
+
+.lightBox .gallery--icons{
+  padding: 0 50px 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+

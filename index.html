@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/lightBox.css">
+  <title>Frontend Mentor | E-commerce product page</title>
+</head>
+
+<body>
+  <div class="page-cover"></div>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header--hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <img src="images/logo.svg" alt="Company Logo">
+      <nav class="categories" role="navigation" aria-label="Main Navigation">
+        <div class="categories--closer"></div>
+        <ul class="categories--nav">
+          <li class="categories--item">
+            <a href="/collections">Collections</a>
+          </li>
+          <li class="categories--item">
+            <a href="/men">Men</a>
+          </li>
+          <li class="categories--item">
+            <a href="/women">Women</a>
+          </li>
+          <li class="categories--item">
+            <a href="/about">About</a>
+          </li>
+          <li class="categories--item">
+            <a href="/contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="categories--icons">
+        <span class="icons--cart" data-cart-items="3">
+          <img src="./images/icon-cart.svg" alt="products in the cart">
+        </span>
+        <!-- The number of items selected can be dynamically updated using JavaScript -->
+        <img src="./images/image-avatar.png" alt="User Avatar" class="icon--avatar">
+      </div>
+    </header>
+
+     <main class="product">
+
+      <div class="product--gallery">
+        <div class="gallery--hero">
+          <a href="#" class="arrow left-arrow" data-dir="-1">
+            <img src="./images/icon-previous.svg" alt="">
+          </a>
+          <a href="#" class="arrow right-arrow" data-dir="1">
+            <img src="./images/icon-next.svg" alt="">
+          </a>
+          <img src="./images/image-product-1.jpg" alt="product large view" class="hero">
+        </div>
+        <div class="gallery--icons">
+          <img src="./images/image-product-1-thumbnail.jpg" alt="product view" class="icon" data-count="1">
+          <img src="./images/image-product-2-thumbnail.jpg" alt="product view" class="icon" data-count="2">
+          <img src="./images/image-product-3-thumbnail.jpg" alt="product view" class="icon" data-count="3">
+          <img src="./images/image-product-4-thumbnail.jpg" alt="product view" class="icon" data-count="4">
+        </div>
+      </div>
+      <section class="product--details">
+        <div class="product--description">
+          <p class="product--name">Sneaker Company</p>
+          <h1>Fall Limited Edition Sneakers</h1>
+          <p> These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole,
+            they’ll withstand everything the weather can offer.</p>
+        </div>
+        <div class="product--pricing">
+          <ins class="price--discounted">$125.00</ins>
+          <span class="price--discount">50%</span>
+          <del class="price--original">$250.00</del>
+        </div>
+        <div class="product--cart">
+          <button class="minus" disabled="true">
+            <img src="images/icon-minus.svg" alt="decrease quantity">
+          </button>
+          <span class="number" data-number="0">0</span>
+          <button class="plus" disabled="true">
+            <img src="images/icon-plus.svg" alt="increase quantity">
+          </button>
+          <button class="cart"><img src="images/icon-cart.svg" alt="cart icon"> Add to cart</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/functions.js"></script>
+  <script src="js/lightbox.js"></script>
+</body>
+
+</html>
+
+
+
