@@ -1,4 +1,6 @@
-/* Bacsics*/
+/* Basics*/
+
+/*#region basics*/
 html{
   font-size: 10px;
 }
@@ -16,10 +18,26 @@ body{
   box-sizing: border-box;
 }
 
-/*variables*/
-______VARIABLES___{ /* az oldalon használt változók*/
-  z-index: inherit;
+.btn{
+  display: flex;
+  /* flex-grow: 1; */
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-neutral-100);
+  background-color: var(--color-primary-700);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+
 }
+/*#endregion*/
+
+
+______VARIABLES___{z-index: inherit;}
+  /*#region VARIABLES */
 
 :root{
   --color-neutral-100: hsl(0, 0%, 100%);
@@ -59,7 +77,7 @@ h3{
   margin: 0;
 }
 
-.categories{
+.navigation{
   padding: 0;
   margin: 0;
 }
@@ -89,10 +107,111 @@ h3{
   opacity: 1;
 }
 
-______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó képe*/
-  z-index: inherit;
+/*#endregion*/
+
+
+_______SHOPPING CART____{z-index: inherit; }
+
+/*#region  shoppingCart*/
+
+.shoppingCart{
+  position: absolute;
+  background-color: var(--color-neutral-100);
+  min-width: 362px;
+  margin: auto;
+  left: -130px;
+  top: -320px;
+  border-radius: 8px;
+  box-shadow: 0 21px 47px -33px var(--color-neutral-900);
+  z-index: 200;
+  transition: all cubic-bezier(0.165, 0.840, 0.440, 1.000) 500ms;
+  opacity: 0;
 }
 
+.shoppingCart.visible{
+  top: 79px;
+  opacity: 1;
+}
+
+.shoppingCart--head{
+  color: var(--color-primary-900);
+  font-weight: 700;
+  padding: 25px 23px;
+  border-bottom: 1px solid var(--color-neutral-300);
+}
+
+.shoppingCart--body{
+  padding: 25px 17px 30px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 19rem;
+  text-align: center;
+  color: var(--color-neutral-700);
+  font-weight: bold;
+}
+
+.item{
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: var(--color-neutral-700);
+  margin: 0 8px;
+}
+
+.shoppingCart .item--icon{
+  border-radius: 5px;
+  height: 50px;
+}
+
+.item--info{
+  display: grid;
+  align-content: stretch;
+  row-gap: 6px;
+  text-align: left;
+}
+
+.item--name{
+  flex-basis: 100%;
+}
+
+.item--bin{
+  margin-left: auto;
+}
+
+.btn-cart{
+  margin-top: 23px;
+  margin-left: 5px;
+  /* flex-grow: 1; */
+  margin-right: 8px;
+}
+
+strong{
+  font-weight: stronger;
+  color: var(--color-neutral-900);
+}
+
+
+@media screen and (max-width: 450px){
+
+  .shoppingCart.visible{
+    top: 75px;
+    opacity: 1;
+    width: 97% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+
+}
+
+/*#endregion*/
+______HEAD___{/* a logó + navigáció + jobboldalt a kosár és a fickó képe*/
+  z-index: inherit;
+}
+/*#region HEAD*/
 .header{
   display: flex;
   align-items: center;
@@ -107,9 +226,6 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
   position: relative;
   cursor: pointer;
 }
-
-
-
 
 .header--hamburger > span
 {
@@ -134,28 +250,28 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
   transform: rotate(-45deg) translateY(-6px) translateX(7px);
 }
 
-/* Categories*/
-.categories{
+/* navigation*/
+.navigation{
   display: flex;
   align-items: center;
   margin-left: 5.9rem;
 }
 
-.categories--closer{
+.navigation--closer{
   display: none;
 }
 
-.categories--nav{
+.navigation--ul{
   display: flex;
   gap: 3rem;
   list-style: none;
 }
 
-.categories--item{
+.navigation--item{
   position: relative;
 }
 
-.categories--item::before{
+.navigation--item::before{
   content: '';
   position: absolute;
   width: 100%;
@@ -168,30 +284,67 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
   transition: all ease-in-out .4s;
 }
 
-.categories--item:hover::before,
-.categories--item:focus::before{
+.navigation--item:hover::before,
+.navigation--item:focus::before{
   visibility: visible;
   opacity: 1;
 }
 
-.categories--icons{
+.navigation--icons{
   margin-left: auto;
+  margin-top: 0.8rem;
   display: flex;
   gap: 5rem;
   align-items: center;
   height: 5rem;
+  cursor: pointer;
+  position: relative;
 }
 
-.categories--icons img{
+.navigation--icons img{
   width: auto;
   height: 100%;
+}
+
+.icon--avatar{
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: border ease-in .2s;
+  position: relative;
+  left: -0.5rem;
+}
+
+.icon--cart{
+  position: relative;
+}
+
+.pieces-in-cart{
+display: none;
+position: absolute;
+padding: 1px 7px;
+border-radius: 40px;
+background-color: var(--color-primary-700);
+top: -6px;
+right: -6px;
+margin: auto;
+font-size: 9px;
+font-weight: bold;
+color: var(--color-neutral-100);
+}
+
+.pieces-in-cart.visible{
+  display: block;
+}
+
+
+.icon--avatar:hover,
+.icon--avatar:focus{
+  border-color: var(--color-primary-700);
 }
 
 /* header mobile view*/
 /* Media query*/
  @media screen and (max-width: 899px){
-
-
 
    /*---Header*/
   .header{
@@ -210,7 +363,7 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
   }
 
   /* the nav element*/
-.categories{
+.navigation{
   position: fixed;
   z-index: 6;
   top: 0;
@@ -221,12 +374,12 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
   transition: all cubic-bezier(.62,.01,.25,1) .4s;
 }
 
-.categories.visible{
+.navigation.visible{
   left: 0;
 }
 
-/*categories--closer*/
-.categories--closer{
+/*navigation--closer*/
+.navigation--closer{
   display: block;
   position: absolute;
   top: 2.2rem;
@@ -235,8 +388,8 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
   cursor: pointer;
 }
 
-  .categories--closer::before,
-  .categories--closer::after
+  .navigation--closer::before,
+  .navigation--closer::after
   {
     content: '';
     width: 15px;
@@ -250,15 +403,15 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
     margin: auto;
   }
 
-  .categories--closer::before {
+  .navigation--closer::before {
     transform: rotate(45deg);
   }
-  .categories--closer::after {
+  .navigation--closer::after {
     transform: rotate(-45deg);
   }
 
   /*navigation*/
-  .categories--nav
+  .navigation--ul
   {
     flex-direction: column;
     z-index: 2;
@@ -269,72 +422,103 @@ ______FEJRESZ___{/* a logó + navigáció + jobboldalt a kosár és a fickó ké
     height: 100vh;
   }
 
-  .categories--item > a{
+  .navigation--item > a{
     color: var(--color-primary-900);
   }
 
 
 /* li items*/
-  .categories--item:hover::before,
-  .categories--item:focus::before
+  .navigation--item:hover::before,
+  .navigation--item:focus::before
   {
     opacity: 0;
     visibility: hidden;
     transition: none;
   }
 
-  .categories--item a
+  .navigation--item a
   {
     transition: color ease-in-out .2s;
   }
 
-  .categories--item a:hover
+  .navigation--item a:hover
   {
     color: var(--color-neutral-400);
   }
 
-  .categories--icons
+  .navigation--icons
   {
     height: auto;
     gap: calc(46px - (((750px - 100vw) / 375) * 26));
   }
 
-  .categories--icons > img
+  .navigation--icons > img
   {
     height: calc(50px - (((750px - 100vw) / 375) * 25));
   }
 }
 
+/*#endregion*/
 
-_______KEPGALERIA JOBBRA LEIRAS ES GOMB {
+_______IMAGE_GALLERY PRODUCT DESCRIPTION {
   z-index: 0;
 }
+/*#region KEPGALERIA--TERMEK--LEIRAS*/
 
-/* kétoszlopos kinézet */
+_______IMAGE_GALLERY PRODUCT DESCRIPTION WRAPPER____{/* fölül a hero alatta a 4 ikonkép */
+  z-index: inherit;
+}
+/*#region KEPGALERIA--TERMEK--LEIRAS WRAPPER*/
+/* MAIN */
+
+/* kétoszlopos */
 main{
-  margin-top: 9.4rem;
-  margin-bottom: 10rem;
+margin-top: 9.4rem;
+  margin-bottom: 5rem;
   padding: 0 4.9rem;
   display: grid;
   grid-template-columns: 445px 1fr;
   column-gap: 12.7rem;
 }
 
+/*  amíg a 2 oszlop egymás mellett van a köztük lévőtávolság zsugorodik */
 @media screen and (min-width: 900px) and (max-width: 1440px) {
   main {
     column-gap: calc(70px + ((100vw - 900px) / 240) * 57);
   }
 }
-/* egyoszloposra vált 899px-alatt*/
+/* egyoszloposra vált 899px- nél*/
 @media screen and ( max-width: 899px ){
   main{
     grid-template-columns: 1fr;
+    padding: 0 2rem;
+  }
+}
+/* a leírás fölötti távolság a kép aljától zsugorodik */
+@media screen and (max-width: 680px){
+  main {
+    margin-top: calc(max(0px, 0px + ((100vw - 375px) / 405) * 94));
   }
 }
 
-______HERO KEP PLUSZ IKONOK___{/* BALOLDALI RÉSZ */
+@media screen and (max-width: 580px){
+  main{
+    padding: 0;
+    margin-bottom: 4rem;
+  }
+}
+/*#endregion*/
+
+______IMAGE GALLERY HERO PLUS ICONS___{/* BALOLDALI RÉSZ */
   z-index: inherit;
 }
+/*#region KEPGALERIA HERO KEP PLUSZ IKONOK */
+
+
+_______KEPGALERIA DESKTOP NEZET____{/* fölül a hero alatta a 4 ikonkép -- jobbra a leírás*/
+  z-index: inherit;}
+/*#region KEPGALERIA DESKTOP NEZET */
+
 
 .product--gallery{
 display: grid;
@@ -376,7 +560,7 @@ row-gap: 3.2rem;
   max-width: 445px;
   display: block;
   border-radius: 15px;
-  transition: opacity ease-in .4s;
+  transition: opacity cubic-bezier(.55,.09,.68,.53) .5s;
   opacity: 1;
   cursor: pointer;
 }
@@ -387,24 +571,29 @@ row-gap: 3.2rem;
 
 .gallery--icons {
   display: grid;
-  column-gap: 3rem;
   grid-template-columns: repeat(4, 1fr);
+  column-gap: 3rem;
 }
 
 .gallery--icons > img{
   cursor: pointer;
+  width: 100%;
+  border-radius: 15px;
 }
 
 .gallery--icons > img.selected{
   border: 2px inset var(--color-primary-700);
   opacity: 0.4;
 }
+/*#endregion*/
+
+
+_______KEPGALERIA IPAD NEZET____{/* a hero mellett 2*2 -es kinézetben az ikonképek */
+  z-index: inherit;}
+/*#region KEPGALERIA IPAD NEZET */
 
 @media screen and ( max-width: 899px ){
 
-  main{
-    padding: 0 2rem;
-  }
   .product--gallery{
     grid-template-columns: 445px 1fr;
     column-gap: 30px;
@@ -417,19 +606,18 @@ row-gap: 3.2rem;
     justify-content: center;
     gap: 20px;
   }
-
-  .product--name{
-    margin-top: 0;
-  }
 }
+/*#endregion*/
 
-
-.gallery--icons > img{
-  width: 100%;
-  border-radius: 15px;
-}
+_______KEPGALERIA IPAD NARROW NEZET____{/* a hero mellett egy oszlopban függőlegessen a négy kép */
+  z-index: inherit;}
+/*#region KEPGALERIA IPAD NARROW NEZET */
 
 @media screen and ( max-width: 760px ){
+
+  .gallery--hero > img{
+    cursor:default;
+  }
 
   .gallery--icons{
     grid-template-columns: auto;
@@ -446,13 +634,15 @@ row-gap: 3.2rem;
     width: auto;
   }
 }
+/*#endregion*/
 
+
+_______KEPGALERIA MOBIL NEZET____{/* fölül a hero alatta a 4 ikonkép */
+  z-index: inherit;
+}
+/*#region KEPGALERIA MOBIL NEZET */
 
 @media screen and (max-width: 680px){
-
-  main {
-    margin-top: calc(max(0px, 0px + ((100vw - 375px) / 405) * 94));
-  }
 
   .product--gallery{
     grid-template-columns: 1fr;
@@ -474,12 +664,18 @@ row-gap: 3.2rem;
     width: 100%;
   }
 }
+/*#endregion*/
+/*#endregion*/
 
-
-
-______TERMEK LEIRAS PLUSZ KOSAR___{/* a hero képtől jobbra eső oszlop*/
+______PRODUCT DESCRIPTION___{/* a hero képtől jobbra eső oszlop*/
   z-index: inherit;
 }
+/*#region TERMEK-LEIRAS */
+
+______PRODUCT DESCRIPTION DESKTOP___{
+  z-index: inherit;
+}
+/*#region TERMEK-LEIRAS DESKTOP NEZET */
 
 .product--details{
   display: flex;
@@ -494,20 +690,8 @@ ______TERMEK LEIRAS PLUSZ KOSAR___{/* a hero képtől jobbra eső oszlop*/
   font-weight: bold;
   letter-spacing: 1.5px;
   word-spacing: 0.2rem;
-  margin-top: -23px;
-  margin-bottom: 2rem;
-}
-
-@media screen and (max-width: 899px){
-
-  .product--details{
-    margin-top: 7rem;
-    margin-bottom: 10rem
-  }
-
-  .product--name{
-    margin-top: 0;
-  }
+  position: relative;
+  top: -1.7rem;
 }
 
 h1{
@@ -515,6 +699,7 @@ h1{
   color: var(--color-neutral-900);
   line-height: 1.1;
   margin-bottom: 3.7rem;
+
 }
 
 p{
@@ -526,12 +711,11 @@ p{
   justify-items: start;
   grid-template-columns: auto 1fr;
   display: grid;
-  column-gap: 2rem;
+  column-gap: 1.7rem;
   row-gap: 0.5rem;
   margin-top: 2.4rem;
   margin-bottom: 40px;
 }
-
 
 .price--discounted{
   font-size: 2.9rem;
@@ -545,7 +729,7 @@ p{
   align-content: center;
   place-items: center;
   font-size: 1.5rem;
-  padding: 0 12px;
+  padding: 0 10px;
   color: var(--color-primary-700);
   font-weight: 900;
   background-color: var(--color-primary-400);
@@ -558,10 +742,9 @@ p{
   font-weight: bold;
   color: var(--color-neutral-400);
   text-decoration: line-through;
-
+  position: relative;
+  top: 0.7rem;
 }
-
-
 /* .product--cart*/
 
 .product--cart{
@@ -613,6 +796,32 @@ p{
   filter: brightness(0) invert(1);
   height: 15px;
 }
+/*#endregion*/
+
+
+______PRODUCT DESCRIPTION IPAD___{
+  z-index: inherit;
+}
+/*#region TERMEK LEIRAS IPAD NEZET */
+
+@media screen and (max-width: 899px){
+
+  .product--details{
+    margin-top: 7rem;
+    margin-bottom: 10rem
+  }
+
+  .product--name{
+    margin-top: 0;
+  }
+
+}
+/*#endregion*/
+
+______PRODUCT DESCRIPTION MOBILE__{
+  z-index: inherit;
+}
+/*#region TERMEK LEIRAS_ MOBIL NEZET */
 
 @media screen and (max-width: 580px){
 
@@ -624,10 +833,7 @@ p{
     border: none;
   }
 
-  main{
-    padding: 0;
-    margin-bottom: 4rem;
-  }
+
 
  .product--details{
   margin-top: max(0px, calc(70px - ((580px - 100vw) / 205) * 46));
@@ -699,4 +905,6 @@ p{
     height: 40px;
   }
 }
-
+/*#endregion*/
+/*#endregion*/
+/*#endregion*/

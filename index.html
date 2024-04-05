@@ -23,28 +23,29 @@
         <span></span>
       </div>
       <img src="images/logo.svg" alt="Company Logo">
-      <nav class="categories" role="navigation" aria-label="Main Navigation">
-        <div class="categories--closer"></div>
-        <ul class="categories--nav">
-          <li class="categories--item">
+      <nav class="navigation" role="navigation" aria-label="Main Navigation">
+        <div class="navigation--closer"></div>
+        <ul class="navigation--ul">
+          <li class="navigation--item">
             <a href="/collections">Collections</a>
           </li>
-          <li class="categories--item">
+          <li class="navigation--item">
             <a href="/men">Men</a>
           </li>
-          <li class="categories--item">
+          <li class="navigation--item">
             <a href="/women">Women</a>
           </li>
-          <li class="categories--item">
+          <li class="navigation--item">
             <a href="/about">About</a>
           </li>
-          <li class="categories--item">
+          <li class="navigation--item">
             <a href="/contact">Contact</a>
           </li>
         </ul>
       </nav>
-      <div class="categories--icons">
-        <span class="icons--cart" data-cart-items="3">
+      <div class="navigation--icons">
+        <span class="icon--cart" data-cart-items="3">
+          <span class="pieces-in-cart">0</span>
           <img src="./images/icon-cart.svg" alt="products in the cart">
         </span>
         <!-- The number of items selected can be dynamically updated using JavaScript -->
@@ -84,11 +85,11 @@
           <del class="price--original">$250.00</del>
         </div>
         <div class="product--cart">
-          <button class="minus" disabled="true">
+          <button class="minus" data-delta="-1">
             <img src="images/icon-minus.svg" alt="decrease quantity">
           </button>
           <span class="number" data-number="0">0</span>
-          <button class="plus" disabled="true">
+          <button class="plus" data-delta="1">
             <img src="images/icon-plus.svg" alt="increase quantity">
           </button>
           <button class="cart"><img src="images/icon-cart.svg" alt="cart icon"> Add to cart</button>
@@ -99,6 +100,8 @@
 
   <script src="js/functions.js"></script>
   <script src="js/lightbox.js"></script>
+
+
 </body>
 
 </html>

@@ -1,29 +1,34 @@
 
 
-const [ hamburger, categories, closer, pageCover ] = ['.header--hamburger', '.categories', '.categories--closer', '.page-cover'].map( sel => document.querySelector(sel));
+const [ hamburger, navigation, closer, pageCover ] = ['.header--hamburger', '.navigation', '.navigation--closer', '.page-cover'].map( sel => document.querySelector(sel));
 
 
-/* MOBILE ACTIONS */
-// Function to show the page cover and categories menu
+/**
+ * shows the navigation menu and the page cover when the hamburger is clicked
+ * @param {*} event
+ */
 function showMenu(e) {
-  console.log(e.target);
   pageCover.classList.add('active');
 
   setTimeout(() => {
-    categories.classList.add('visible');
+    navigation.classList.add('visible');
+      toggleCart(false);
   }, 200);
 }
 
-// Function to hide the page cover and categories menu
+/**
+ * hides the navigation menu and the page cover when the navigation--closer is clicked
+ */
 function hideMenu() {
-  categories.classList.remove('visible');
+  navigation.classList.remove('visible');
+
 
   setTimeout(() => {
     pageCover.classList.remove('active');
   }, 200);
 }
 
-// Event listeners for click actions
+// Event listeners for navigation click actions
 hamburger.addEventListener('click', showMenu);
 closer.addEventListener('click', hideMenu);
 
@@ -32,7 +37,7 @@ closer.addEventListener('click', hideMenu);
 
 const icons = document.querySelectorAll('.gallery--icons > img');
 const [ hero, rightArrow, leftArrow ] = ['.gallery--hero > img', '.right-arrow', '.left-arrow'].map( sel => document.querySelector(sel));
-let imageCount = 0;
+let currentIcon = 0;
 
 leftArrow.addEventListener('click', handleArrowClick);
 rightArrow.addEventListener('click', handleArrowClick);
@@ -42,41 +47,49 @@ icons.forEach((icon) => {
   icon.addEventListener('click', showAsHero);
 });
 
-
+/**
+ * makes the currect icon in the image gallery marked and the others unmarked
+ * @param {number} currentIconNum
+ */
 function markSelectedIcon(currentIconNum){
-
   icons.forEach( (icon, index)  => {
     if( index == currentIconNum ) icon.classList.add('selected');
     else icon.classList.remove('selected');
   })
 };
 
-
+/**
+ *  decides which of the icons is the current one to show as a hero image when one of the arrows are clicked
+ * @param {mouseClick event obj} e
+ */
 function handleArrowClick(e) {
   const elem = e.target.nodeName === 'IMG' ? e.target.parentNode : e.target;
   const max = icons.length - 1;
   let delta = parseInt(elem.dataset.dir, 10);
-  imageCount = (imageCount + delta + max + 1) % (max + 1);
+  currentIcon = (currentIcon + delta + max + 1) % (max + 1);
 
-  markSelectedIcon(imageCount);
+  markSelectedIcon(currentIcon);
 
-  const theIcon = icons[imageCount];
+  const theIcon = icons[currentIcon];
   showAsHero.call(theIcon);
 };
 
-
+/**
+ * always called in the scope of the actual icon image when one of the arrows OR one of the icon images is clicked
+ */
 function showAsHero() {
   hero.classList.add('active');
   const that = this;
-  imageCount = parseInt(that.dataset.count) - 1;
+  currentIcon = parseInt(that.dataset.count) - 1;
 
-  markSelectedIcon(imageCount);
+  markSelectedIcon(currentIcon);
 
   hero.addEventListener('transitionend', () => {
-    
+
     hero.src = that.src.replace('-thumbnail', '');
     hero.classList.remove('active');
   }, { once: true });
 };
+
 
 
