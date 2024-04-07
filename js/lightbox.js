@@ -126,7 +126,7 @@ function checkCartPosition( windowWidth = document.documentElement.clientWidth )
   if (!shoppingCart) return;
 
 
-  const defaultLeftValue = '-130px';
+  const defaultLeftValue = '-170px';
   shoppingCart.style.position = 'absolute';
   shoppingCart.style.left = defaultLeftValue;
 
@@ -135,7 +135,7 @@ function checkCartPosition( windowWidth = document.documentElement.clientWidth )
   const rightEdge = dimensions.left + dimensions.width;
 
   if ( rightEdge > windowWidth ) {
-      shoppingCart.style.position = 'fixed';
+      // shoppingCart.style.position = 'fixed';
       shoppingCart.style.left = 'auto';
       shoppingCart.style.right = '10px';
   }
@@ -712,7 +712,7 @@ function updateCart(){
 
 
 
-  
+
   const priceToPay_span = shoppingCart.querySelector('.priceToPay');
   const priceAndNumber_span = shoppingCart.querySelector('.unitPriceAndNumber');
   const piecesInCart_span = document.querySelector('.pieces-in-cart');
