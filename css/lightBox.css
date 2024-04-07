@@ -59,6 +59,7 @@
   width: 58px;
   height: 58px;
   display: grid;
+  place-items: center;
   transform: translateY(-10px);
 }
 

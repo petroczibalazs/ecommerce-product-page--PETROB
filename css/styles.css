@@ -46,7 +46,7 @@ body{
 /*#endregion*/
 
 
-______1 VARIABLES___{z-index: inherit;}
+___1___VARIABLES___{z-index: inherit;}
   /*#region VARIABLES */
 
 :root{
@@ -131,7 +131,7 @@ h3{
 /*#endregion*/
 
 
-_______2 SHOPPING CART____{z-index: inherit; }
+___2___SHOPPING CART____{z-index: inherit; }
 
 /*#region  shoppingCart*/
 
@@ -230,7 +230,7 @@ strong{
 /*#endregion*/
 
 
-______3 HEAD___{/* a logó + navigáció + jobboldalt a kosár és a fickó képe*/
+___3___HEAD___{/* a logó + navigáció + jobboldalt a kosár és a fickó képe*/
   z-index: inherit;
 }
 /*#region HEAD*/
@@ -482,16 +482,15 @@ color: var(--color-neutral-100);
 
 /*#endregion*/
 
-_______4 IMAGE_GALLERY PRODUCT DESCRIPTION {
+___4____IMAGE_GALLERY PRODUCT DESCRIPTION {
   z-index: 0;
 }
-/*#region KEPGALERIA--TERMEK--LEIRAS*/
 
-_______5 IMAGE_GALLERY PRODUCT DESCRIPTION WRAPPER____{/* fölül a hero alatta a 4 ikonkép */
+___5____WRAPPER____{/* fölül a hero alatta a 4 ikonkép */
   z-index: inherit;
 }
-/*#region KEPGALERIA--TERMEK--LEIRAS WRAPPER*/
-/* MAIN */
+/*#region WRAPPER*/
+
 
 /* two column look */
 main{
@@ -532,13 +531,12 @@ margin-top: 9.4rem;
 }
 /*#endregion*/
 
-______6 IMAGE GALLERY HERO PLUS ICONS___{/* hero + the icon pics */
+___6___IMAGE GALLERY HERO PLUS ICONS___{/* hero + the icon pics */
   z-index: inherit;
 }
-/*#region KEPGALERIA HERO KEP PLUSZ IKONOK */
 
 
-_______7 IMAGE GALLERY DESKTOP VIEW____{
+___7___IMAGE GALLERY DESKTOP VIEW____{
   z-index: inherit;}
 /*#region image gallery desktop view */
 
@@ -563,8 +561,8 @@ row-gap: 3.2rem;
   margin: auto;
   background-color: #ffffff;
   border-radius: 50px;
-  display: grid;
-  place-items: center;
+  /* display: grid;
+  place-items: center; */
   cursor: pointer;
   z-index: 3;
 }
@@ -611,9 +609,9 @@ row-gap: 3.2rem;
 /*#endregion*/
 
 
-_______8 IMAGE GALLERY IPAD VIEW____{/* hero and icon pics in 2*2 next to it */
+___8____IMAGE GALLERY IPAD VIEW____{/* hero and icon pics in 2*2 next to it */
   z-index: inherit;}
-/*#region PRODUCT GALLERY IPAD VIEW */
+/*#region IMAGE GALLERY IPAD VIEW */
 
 @media screen and ( max-width: 899px ){
 
@@ -632,9 +630,9 @@ _______8 IMAGE GALLERY IPAD VIEW____{/* hero and icon pics in 2*2 next to it */
 }
 /*#endregion*/
 
-_______9 IMAGE GALLERY NARROW IPAD VIEW____{/* hero + icon pics in a column next to it */
+___9____IMAGE GALLERY NARROW IPAD VIEW____{/* hero + icon pics in a column next to it */
   z-index: inherit;}
-/*#region KEPGALERIA IPAD NARROW NEZET */
+/*#region IMAGE GALLERY NARROW IPAD VIEW */
 
 @media screen and ( max-width: 760px ){
 
@@ -660,7 +658,7 @@ _______9 IMAGE GALLERY NARROW IPAD VIEW____{/* hero + icon pics in a column next
 /*#endregion*/
 
 
-_______10 IMAGE GALLERY MOBILE VIEW____{/* hero + the 4 icon pics in a row under it */
+___10____IMAGE GALLERY MOBILE VIEW____{/* hero + the 4 icon pics in a row under it */
   z-index: inherit;
 }
 /*#region KEPGALERIA MOBIL NEZET */
@@ -686,19 +684,23 @@ _______10 IMAGE GALLERY MOBILE VIEW____{/* hero + the 4 icon pics in a row under
     height: auto;
     width: 100%;
   }
+
+  .arrow{
+    display: grid;
+    place-items: center;
+  }
 }
 /*#endregion*/
-/*#endregion*/
 
-______11 PRODUCT DESCRIPTION___{/* the column on the right of the image  gallery */
+__11____PRODUCT DESCRIPTION___{/* the column on the right of the image  gallery */
   z-index: inherit;
 }
-/*#region product description */
 
-______12 PRODUCT DESCRIPTION DESKTOP___{
+
+__12____PRODUCT DESCRIPTION DESKTOP___{
   z-index: inherit;
 }
-/*#region PRODUCT DESCRIPTION MOBILE VIEW */
+/*#region PRODUCT DESCRIPTION DESKTOP VIEW */
 
 .product--details{
   display: flex;
@@ -822,7 +824,7 @@ p{
 /*#endregion*/
 
 
-______13 PRODUCT DESCRIPTION IPAD___{
+__13____PRODUCT DESCRIPTION IPAD___{
   z-index: inherit;
 }
 /*#region PRODUCT DESCRIPTION IPAD VIEW */
@@ -841,7 +843,7 @@ ______13 PRODUCT DESCRIPTION IPAD___{
 }
 /*#endregion*/
 
-______14 PRODUCT DESCRIPTION MOBILE__{
+__14____PRODUCT DESCRIPTION MOBILE__{
   z-index: inherit;
 }
 /*#region PRODUCT DESCRIPTION MOBILE VIEW */
@@ -925,5 +927,4 @@ ______14 PRODUCT DESCRIPTION MOBILE__{
   }
 }
 /*#endregion*/
-/*#endregion*/
-/*#endregion*/
+
