@@ -3,7 +3,8 @@ const galleryCopy = gallery.cloneNode(true);
 const galleryParent = gallery.parentNode;
 let lightBoxCloser = null;
 let lightBoxIsVisible = false;
-let windowWidth = document.documentElement.clientWidth;
+let actOnWindowResize = false;
+
 
 // Create a template for the lightbox
 const lightBoxTemplate = document.createElement('template');
@@ -59,6 +60,8 @@ const shoppingCartTemplate = document.createElement('template');
 
 const cart_span = document.querySelector('.icon--cart');
 const navigationIcons_div = document.querySelector('.navigation--icons');
+const galleryHero_div = document.querySelector(".gallery--hero");
+let shoppingCartParent_elem = null;
 let shoppingCart = null;
 
 cart_span.addEventListener('click', toggleCart);
@@ -76,6 +79,17 @@ function handleResize(){
   timer = setTimeout( checkCartPosition, 30);
 }
 
+function setParentElement(windowWidth, bool = false){
+
+  if( windowWidth < 450 ) shoppingCartParent_elem = galleryHero_div;
+  else                    shoppingCartParent_elem = navigationIcons_div;
+
+  if( bool === true && actOnWindowResize === true){// the function is called on window.resize event
+    shoppingCartParent_elem.appendChild( shoppingCart );
+  }
+}
+
+
 /**
  * shows or hides the shoppingCart when the icon is clicked and hides it when the menu in mobile view, or the easyBox are shown -> this is the purpose of the boolean parameter
  * @param {boolean} bool
@@ -88,11 +102,11 @@ function toggleCart(bool= true) {
       measureWindowWidth()
       .then( ( widthValue ) =>{
 
-        console.log(`widthValue: ${widthValue}`);
-
         shoppingCartTemplate.innerHTML = setShoppingCartString(piecesInCart, unitPrice);
 
-        navigationIcons_div.appendChild(shoppingCartTemplate.content.cloneNode(true));
+        setParentElement(widthValue, false);
+
+        shoppingCartParent_elem.appendChild(shoppingCartTemplate.content.cloneNode(true));
         shoppingCart = document.querySelector('.shoppingCart');
 
         const itemBin = shoppingCart.querySelector('.item--bin');
@@ -102,7 +116,10 @@ function toggleCart(bool= true) {
         checkCartPosition( widthValue );
         shoppingCart.classList.add('visible');
 
+        actOnWindowResize = true;
+
       })
+
       .catch( (error) =>{
 
           console.log("something went wrong!");
@@ -110,17 +127,19 @@ function toggleCart(bool= true) {
 
 
   } else {
-     shoppingCart.classList.remove('visible');
-      shoppingCart.addEventListener('transitionend', () => {
-        navigationIcons_div.removeChild(shoppingCart);
+        shoppingCart.classList.remove('visible');
+        shoppingCart.addEventListener('transitionend', () => {
+        shoppingCartParent_elem.removeChild(shoppingCart);
         shoppingCart = null;
+        shoppingCartParent_elem = null;
+        actOnWindowResize = false;
       }, {once: true});
   }
 }
 
 function measureWindowWidth(){
   return new Promise( (resolve, reject) => {
-    resolve(document.documentElement.clientWidth);
+    resolve(parseInt(document.documentElement.clientWidth));
   })
 }
 
@@ -136,10 +155,12 @@ function checkCartPosition( windowWidth = document.documentElement.clientWidth )
   const rightEdge = dimensions.left + dimensions.width;
 
   if ( rightEdge > windowWidth ) {
-      // shoppingCart.style.position = 'fixed';
+
       shoppingCart.style.left = 'auto';
       shoppingCart.style.right = '10px';
   }
+
+  setParentElement(windowWidth, true);
 }
 
 
